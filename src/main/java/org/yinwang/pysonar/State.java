@@ -156,7 +156,11 @@ public class State {
 
     // create new binding and insert
     public void insert(String id, @NotNull Node node, @NotNull Type type, Binding.Kind kind) {
-        Binding b = new Binding(id, node, type, kind);
+        insert(id, node, type, kind, true);
+    }
+
+    public void insert(String id, @NotNull Node node, @NotNull Type type, Binding.Kind kind, boolean isPrimary) {
+        Binding b = new Binding(id, node, type, kind, isPrimary);
         if (type instanceof ModuleType) {
             b.setQname(type.asModuleType().qname);
         } else {
@@ -164,7 +168,6 @@ public class State {
         }
         update(id, b);
     }
-
 
     // directly insert a given binding
     @NotNull

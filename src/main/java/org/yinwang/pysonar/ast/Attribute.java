@@ -31,8 +31,7 @@ public class Attribute extends Node {
     }
 
 
-    public void setAttr(State s, @NotNull Type v) {
-        Type targetType = transformExpr(target, s);
+    public void setAttr(State s, @NotNull Type v) {Type targetType = transformExpr(target, s);
         if (targetType instanceof UnionType) {
             Set<Type> types = ((UnionType) targetType).types;
             for (Type tp : types) {
@@ -65,8 +64,12 @@ public class Attribute extends Node {
         if (bs != null) {
             addRef(targetType, bs);
         }
+        boolean isPrimary = false;
+        if (bs == null || bs.isEmpty()) {
+            isPrimary = true;
+        }
 
-        targetType.table.insert(attr.id, attr, v, ATTRIBUTE);
+        targetType.table.insert(attr.id, attr, v, ATTRIBUTE, isPrimary);
     }
 
 
