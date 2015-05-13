@@ -29,6 +29,7 @@ public class Binding implements Comparable<Object> {
     private boolean isStatic = false;         // static fields/methods
     private boolean isSynthetic = false;      // auto-generated bindings
     private boolean isBuiltin = false;        // not from a source file
+    private boolean isPrimary = true;         // if it is the binding created the first time
 
     @NotNull
     public String name;     // unqualified name
@@ -51,12 +52,13 @@ public class Binding implements Comparable<Object> {
     public String fileOrUrl;
 
 
-    public Binding(@NotNull String id, @NotNull Node node, @NotNull Type type, @NotNull Kind kind) {
+    public Binding(@NotNull String id, @NotNull Node node, @NotNull Type type, @NotNull Kind kind, boolean isPrimary) {
         this.name = id;
         this.qname = type.table.path;
         this.type = type;
         this.kind = kind;
         this.node = node;
+        this.isPrimary = isPrimary;
 
         if (node instanceof Url) {
             String url = ((Url) node).url;
@@ -161,6 +163,11 @@ public class Binding implements Comparable<Object> {
 
     public boolean isBuiltin() {
         return isBuiltin;
+    }
+
+
+    public boolean isPrimary() {
+        return isPrimary;
     }
 
 

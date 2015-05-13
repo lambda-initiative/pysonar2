@@ -287,7 +287,7 @@ public class Call extends Node {
                                 Binding.Kind kind)
     {
         Node loc = Builtins.newDataModelUrl("the-standard-type-hierarchy");
-        Binding b = new Binding(name, loc, type, kind);
+        Binding b = new Binding(name, loc, type, kind, true);
         fun.table.update(name, b);
         b.markSynthetic();
         b.markStatic();
