@@ -30,7 +30,9 @@ public class Import extends Node {
                 Analyzer.self.putProblem(this, "Cannot load module");
             } else if (a.asname != null) {
                 s.insert(a.asname.id, a.asname, mod, Binding.Kind.VARIABLE);
+                transformExpr(a.asname, s);
             }
+            transformExpr(a.name.get(0), s);
         }
         return Type.CONT;
     }
