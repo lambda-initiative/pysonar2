@@ -32,7 +32,9 @@ public class Import extends Node {
                 s.insert(a.asname.id, a.asname, mod, Binding.Kind.VARIABLE);
                 transformExpr(a.asname, s);
             }
-            transformExpr(a.name.get(0), s);
+            if (!a.name.isEmpty()) {
+                transformExpr(a.name.get(0), s);
+            }
         }
         return Type.CONT;
     }
