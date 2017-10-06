@@ -569,6 +569,10 @@ public class Analyzer {
         }
     }
 
+    public Set<FunType> getUncalled() {
+        return uncalled;
+    }
+
 
     public void removeUncalled(FunType f) {
         uncalled.remove(f);
